@@ -4,11 +4,93 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Other Southeast Asia — Glints SEA SME Hiring Index · H1 2026</title>
-<meta name="description" content="While venture deal count fell to an eight-year low, SME hiring across Southeast Asia hit an all-time high. First edition of the Glints SEA SME Hiring Index.">
+<title>Glints SEA SME Hiring Index · 2026 Edition</title>
+<meta name="description" content="While venture deal count fell to an eight-year low, SME hiring across Southeast Asia hit an all-time high. 2026 Edition of the Glints SEA SME Hiring Index.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+// === DATA VINTAGE: SPLICE POINT ===
+// Every number on this page is read from DATA below. Nothing else in the file holds data.
+// Current values = July 2026 warehouse pull (data through Jun 2026).
+// The September refresh (Jan-Sep 2026) only edits this block: search "TODO-SEPT".
+// Do not type numbers into the HTML; elements read DATA through data-bind / data-stat.
+const DATA = {
+  vintage: {
+    // Last month in DATA.index. July pull: "Jun 2026" / "June 2026".
+    lastMonthShort: "Sep 2026",
+    lastMonthLong:  "September 2026",
+    // Data window shown in chart sources, methodology and fineprint. July pull: "Jan 2024 – Jun 2026".
+    coverage: "Jan 2024 – Sep 2026",
+    // Current-year window used in stat labels. July pull covers Jan-Jun 2026.
+    period: "Jan–Sep 2026",
+    // Comparison window for growth multiples. July pull = Jan-Jun 2025.
+    priorPeriod: "the same months of 2025",
+    // Footer cadence line. July build text, unchanged.
+    cadence: "Published annually. Next edition: 2027."
+  },
+
+  // SME Hiring Activity Index: monthly SME job postings, six markets, Jan 2024 = 100.
+  // July pull: 30 months, Jan 24 .. Jun 26, last value 339.5.
+  index: {
+    months: ["Jan 24","Feb 24","Mar 24","Apr 24","May 24","Jun 24","Jul 24","Aug 24","Sep 24","Oct 24","Nov 24","Dec 24","Jan 25","Feb 25","Mar 25","Apr 25","May 25","Jun 25","Jul 25","Aug 25","Sep 25","Oct 25","Nov 25","Dec 25","Jan 26","Feb 26","Mar 26","Apr 26","May 26","Jun 26","Jul 26","Aug 26","Sep 26"],
+    values: [100.0,85.4,95.6,90.1,111.2,111.7,124.3,131.0,130.8,149.9,134.2,131.3,151.1,162.0,158.4,165.9,185.9,187.4,216.1,209.7,228.0,249.9,240.5,238.1,259.5,245.0,243.1,318.3,301.1,336.7,396.2,366.9,407.2]
+  },
+
+  stats: {
+    // SME job postings, current-year window vs same months of prior year, % growth. July: 69 (Jan-Jun 2026 vs Jan-Jun 2025).
+    postingGrowthPct: 73,
+    // Share of hiring SMEs posting for the first time ever, as shown in the hero. July: "1 in 2".
+    firstTimerShareText: "6 in 10",
+    // Same share as a %, used in section 02 copy. July: 49.
+    firstTimerSharePct: 59,
+    // Median minutes from SME job posting to first application. July: 12.
+    firstApplicationMedianMin: 12, /* H1-2026 vintage */
+    // % of SME jobs with an application within 24h. July: 94.6.
+    applicationWithin24hPct: 94.6, /* H1-2026 vintage */
+    // % of shortlisting decisions within 24h of application. July: 52.1.
+    shortlistWithin24hPct: 52.1, /* H1-2026 vintage */
+    // Creator-economy role cluster posting growth, year on year, %. July: 53.
+    creatorClusterGrowthPct: 53 /* H1-2026 vintage */
+  },
+
+  // Half-year buckets shared by the two section 02 charts. July: 2024-H1 .. 2026-H1.
+  halfYears: ["2024-H1", "2024-H2", "2025-H1", "2025-H2", "2026-H1"],
+  // Micro-employers (<10 headcount) as % of distinct SMEs posting >=1 job per bucket. July: [20.6,23.7,25.7,27.8,31.1].
+  microShare: [20.6, 23.6, 25.7, 27.8, 31.1],
+  // First-time employers per bucket, indexed 2024-H1 = 100. July: [100,103,105,113,132].
+  firstTimeIndexed: [100.0, 106.6, 108.7, 116.9, 136.3],
+
+  // Top 10 SME roles ranked by posting volume in the current window; mult = growth multiple vs prior window.
+  // July: Jan-Jun 2026 vs Jan-Jun 2025.
+  topRoles: [
+    { role: "Sales Representative",    mult: 1.8 },
+    { role: "Administrative Staff",    mult: 1.7 },
+    { role: "Store Crew",    mult: 2.7 },
+    { role: "Marketing Professionals",    mult: 1.7 },
+    { role: "Sales Operations",    mult: 1.3 },
+    { role: "Accountant",    mult: 1.5 },
+    { role: "Kitchen Staff",    mult: 2.4 },
+    { role: "Content Creator",    mult: 1.3 },
+    { role: "Teacher",    mult: 1.5 },
+    { role: "Waitress & Waiter",    mult: 2.1 }
+  ],
+
+  // Fastest-rising roles with material volume; mult = growth multiple vs prior window. July: Jan-Jun 2026 vs Jan-Jun 2025.
+  risers: [                                            
+    { role: "Logistics Driver",   mult: 40.1 },
+    { role: "Personal Driver",    mult: 30.9 },
+    { role: "Nutritionist",       mult: 10.7 },
+    { role: "English Teacher",    mult: 4.9 },
+    { role: "Production Worker",  mult: 4.8 },
+    { role: "Sales Promoter",     mult: 4.3 },
+    { role: "Field Collector",    mult: 4.3 },
+    { role: "Baker",              mult: 4.1 },
+    { role: "Motorcycle Courier", mult: 3.7 }
+  ]
+};
+// === END DATA VINTAGE ===
+</script>
 <style>
   :root{
     --red:#EC272B;        /* glints-aries primary */
@@ -82,14 +164,6 @@
   ol.toproles li::before{content:counter(r,decimal-leading-zero);font-weight:800;color:var(--grey);font-size:13px;min-width:26px}
   ol.toproles .mult{margin-left:auto;font-weight:700;color:var(--yellow);font-size:13px;white-space:nowrap}
 
-  /* salary table */
-  table{width:100%;border-collapse:collapse;margin-top:40px;font-size:15px}
-  th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);text-align:left;
-     padding:12px 16px;border-bottom:2px solid rgba(255,255,255,.15)}
-  td{padding:13px 16px;border-bottom:1px solid var(--line)}
-  td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
-  tr:hover td{background:rgba(255,255,255,.02)}
-
   /* methodology */
   .meth{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:44px}
   .methcard{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:26px}
@@ -128,30 +202,29 @@
 
 <nav>
   <a class="wordmark" href="#top"><img src="data:image/png;base64,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" alt="Glints"></a>
-  <span class="navtitle">SEA SME Hiring Index · H1 2026</span>
+  <span class="navtitle">SEA SME Hiring Index · 2026 Edition</span>
   <div class="links">
     <a href="#decoupling">The Decoupling</a>
     <a href="#employers">New Employers</a>
     <a href="#roles">Roles</a>
     <a href="#speed">Speed</a>
-    <a href="#salaries">Salaries</a>
     <a href="#methodology">Methodology</a>
     <a href="#letter">Letter from Glints</a>
   </div>
 </nav>
 
 <header id="top">
-  <span class="eyebrow">Glints SEA SME Hiring Index — First Edition · H1 2026</span>
-  <h1>The region&rsquo;s real economy <em>didn&rsquo;t get the memo.</em></h1>
+  <span class="eyebrow">Glints SEA SME Hiring Index · 2026 Edition</span>
+  <h1>The hiring charts tell <em>a different story</em> from the funding charts.</h1>
   <p class="hero-sub">Venture funding headlines say Southeast Asia is in retreat. The small businesses that employ
      most of the region never noticed. Drawn from hiring activity by small and medium employers across six markets
      on Glints — <strong>the platform where Southeast Asia&rsquo;s SMEs hire</strong> — this is the region&rsquo;s
      first dedicated index of SME hiring.</p>
   <div class="statgrid">
-    <div class="stat"><div class="n" data-count="339.5" data-dec="1">0</div><div class="l">SME Hiring Index, Jun 2026 (Jan 2024 = 100)</div></div>
-    <div class="stat"><div class="n" data-count="69" data-suffix="%" data-prefix="+">0</div><div class="l">SME job posting growth, H1 2026 vs H1 2025</div></div>
-    <div class="stat"><div class="n">1 in 2</div><div class="l">hiring SMEs were posting a job for the first time ever</div></div>
-    <div class="stat"><div class="n" data-count="12" data-suffix=" min">0</div><div class="l">median time for an SME job to get its first application</div></div>
+    <div class="stat"><div class="n" data-stat="derived.indexLatest" data-dec="1">0</div><div class="l">SME Hiring Index, <span data-bind="vintage.lastMonthShort">Jun 2026</span> (Jan 2024 = 100)</div></div>
+    <div class="stat"><div class="n" data-stat="stats.postingGrowthPct" data-suffix="%" data-prefix="+">0</div><div class="l">SME job posting growth, <span data-bind="vintage.period">Jan–Sep 2026</span> vs <span data-bind="vintage.priorPeriod">the same months of 2025</span></div></div> 
+    <div class="stat"><div class="n" data-bind="stats.firstTimerShareText">6 in 10</div><div class="l">hiring SMEs were posting a job for the first time ever</div></div>
+    <div class="stat"><div class="n" data-stat="stats.firstApplicationMedianMin" data-suffix=" min">0</div><div class="l">median time for an SME job to get its first application</div></div>
   </div>
 </header>
 
@@ -159,18 +232,18 @@
   <div class="kicker">01 · The Decoupling</div>
   <h2>Capital markets and the real economy have parted ways.</h2>
   <p class="lede">Through the exact window in which Southeast Asia&rsquo;s venture deal count sank to its lowest level
-     in nearly a decade, SME hiring activity on Glints <strong>more than tripled</strong>. Small employers do not hire
+     in nearly a decade, SME hiring activity on Glints <strong>more than quadrupled</strong>. Small employers do not hire
      because sentiment improved. They hire because orders came in.</p>
   <div class="split">
     <div class="chartbox reveal">
       <h3>SME Hiring Activity Index — monthly job postings, six markets (Jan 2024 = 100)</h3>
       <canvas id="indexChart" height="120"></canvas>
-      <div class="src">Source: Glints platform data, Jan 2024 – Jun 2026. Methodology below.</div>
+      <div class="src">Source: Glints platform data, <span data-bind="vintage.coverage">Jan 2024 – Jun 2026</span>. Methodology below.</div>
     </div>
     <div class="quotecard reveal">
       <div class="big">Q1 2026 recorded the <em>lowest quarterly venture deal count</em> in Southeast Asia in at least eight years.</div>
       <div class="src">DealStreetAsia, SE Asia Deal Review Q1 2026. Headline funding value was dominated by a small number of data-centre megadeals; underlying deal flow remained below pre-2022 levels.</div>
-      <div class="big" style="margin-top:28px">Meanwhile SME job postings reached an <em>all-time high</em> — index 339.5 in June 2026.</div>
+      <div class="big" style="margin-top:28px">Meanwhile SME job postings reached an <em>all-time high</em> — index <span data-bind="derived.indexLatest">407.2</span> in <span data-bind="vintage.lastMonthLong">September 2026</span>.</div>
     </div>
   </div>
 </section>
@@ -178,7 +251,7 @@
 <section id="employers">
   <div class="kicker">02 · The New Employer Class</div>
   <h2>Half of the SMEs hiring today have never hired on a platform before.</h2>
-  <p class="lede">In H1 2026, <strong>49% of small employers posting on Glints were doing so for the first time ever</strong> —
+  <p class="lede">In <span data-bind="vintage.period">Jan–Sep 2026</span>, <strong><span data-bind="stats.firstTimerSharePct">59</span>% of small employers posting on Glints were doing so for the first time ever</strong> —
      businesses entering the formal hiring market, many making their first hire, full stop. And the fastest-growing
      employer class is the smallest: companies with fewer than ten people are now
      <strong>nearly one in three</strong> hiring SMEs, up from one in five two years ago.</p>
@@ -191,7 +264,7 @@
     <div class="chartbox reveal">
       <h3>First-time employers per half-year (2024-H1 = 100)</h3>
       <canvas id="firstChart" height="150"></canvas>
-      <div class="src">First-time = employer&rsquo;s first-ever job posting on the platform. Volume up 32% in two years; share steady at ~1 in 2.</div>
+      <div class="src">First-time = employer&rsquo;s first-ever job posting on the platform. Volume up <span data-bind="derived.firstTimeGrowthPct">36</span>% in two years; share steady at ~<span data-bind="stats.firstTimerShareText">6 in 10</span>.</div>
     </div>
   </div>
   <div class="callout reveal"><strong>Why it matters:</strong> this is net-new demand, not share shifting between platforms.
@@ -204,29 +277,18 @@
   <h2>The boom is the real economy — plus a creator class that barely existed three years ago.</h2>
   <p class="lede">The fastest-rising SME roles are not what the AI-doom discourse predicts. They are drivers, bakers,
      production workers, sales promoters — the jobs of physical commerce growing again. Alongside them, a
-     <strong>creator-economy hiring cluster grew 53% year on year</strong>: live-commerce hosts, social media managers,
-     e-commerce operators. Content Creator is now a top-8 SME role outright.</p>
+     <strong>creator-economy hiring cluster grew <span data-bind="stats.creatorClusterGrowthPct">53</span>% year on year</strong>: live-commerce hosts, social media managers,
+     e-commerce operators. Content Creator is now a top-<span data-bind="derived.contentCreatorRank">8</span> SME role outright.</p>
   <div class="rolegrid">
     <div class="chartbox reveal">
-      <h3>Top 10 SME roles, H1 2026 — growth vs H1 2025</h3>
-      <ol class="toproles">
-        <li>Sales Representative <span class="mult">×2.7</span></li>
-        <li>Administrative Staff <span class="mult">×1.7</span></li>
-        <li>Store Crew <span class="mult">×2.7</span></li>
-        <li>Marketing Professionals <span class="mult">×1.9</span></li>
-        <li>Accountant <span class="mult">×1.7</span></li>
-        <li>Sales Operations <span class="mult">×1.0</span></li>
-        <li>Kitchen Staff <span class="mult">×2.3</span></li>
-        <li>Content Creator <span class="mult">×1.3</span></li>
-        <li>Teacher <span class="mult">×1.5</span></li>
-        <li>Waitress &amp; Waiter <span class="mult">×2.0</span></li>
-      </ol>
-      <div class="src">Ranked by H1 2026 posting volume. Multiple = H1 2026 vs H1 2025 postings.</div>
+      <h3>Top 10 SME roles, <span data-bind="vintage.period">Jan–Sep 2026</span> — growth vs <span data-bind="vintage.priorPeriod">the same months of 2025</span></h3> 
+      <ol class="toproles" id="topRoles"></ol>
+      <div class="src">Ranked by posting volume in <span data-bind="vintage.period">Jan–Sep 2026</span>. Multiple = <span data-bind="vintage.period">Jan–Sep 2026</span> vs <span data-bind="vintage.priorPeriod">the same months of 2025</span> postings.</div>
     </div>
     <div class="chartbox reveal">
-      <h3>Fastest-rising SME roles — growth multiple, H1 2026 vs H1 2025</h3>
+      <h3>Fastest-rising SME roles — growth multiple, <span data-bind="vintage.period">Jan–Sep 2026</span> vs <span data-bind="vintage.priorPeriod">the same months of 2025</span></h3> 
       <canvas id="risersChart" height="230"></canvas>
-      <div class="src">Roles with material posting volume in H1 2026. Taxonomy-relabel artifacts excluded.</div>
+      <div class="src">Roles with material posting volume in <span data-bind="vintage.period">Jan–Sep 2026</span>. Taxonomy-relabel artifacts excluded.</div>
     </div>
   </div>
   <div class="callout reveal"><strong>The AI part everyone has backwards:</strong> at the small end of the economy we observe
@@ -238,41 +300,18 @@
   <div class="kicker">04 · Speed Is the Product</div>
   <h2>An SME job posted at lunch has applicants before the coffee is cold.</h2>
   <p class="lede">SME hiring runs on a different clock from enterprise recruitment. No requisition cycles, no two-week
-     job-ad campaigns. The median SME job on Glints receives its <strong>first application in about 12 minutes</strong>,
-     and <strong>94.6% receive one within 24 hours</strong>. On the employer side, half of all shortlisting decisions
+     job-ad campaigns. The median SME job on Glints receives its <strong>first application in about <span data-bind="stats.firstApplicationMedianMin">12</span> minutes</strong>,
+     and <strong><span data-bind="stats.applicationWithin24hPct">94.6</span>% receive one within 24 hours</strong>. On the employer side, half of all shortlisting decisions
      happen within a day of the application arriving.</p>
   <div class="statgrid" style="margin-top:48px;max-width:900px">
-    <div class="stat reveal"><div class="n" data-count="12" data-suffix=" min">0</div><div class="l">median time to first application (H1 2026)</div></div>
-    <div class="stat reveal"><div class="n" data-count="94.6" data-dec="1" data-suffix="%">0</div><div class="l">of SME jobs get an application within 24h</div></div>
-    <div class="stat reveal"><div class="n" data-count="52.1" data-dec="1" data-suffix="%">0</div><div class="l">of shortlists happen within 24h of applying</div></div>
+    <div class="stat reveal"><div class="n" data-stat="stats.firstApplicationMedianMin" data-suffix=" min">0</div><div class="l">median time to first application (H1 2026)</div></div> 
+    <div class="stat reveal"><div class="n" data-stat="stats.applicationWithin24hPct" data-dec="1" data-suffix="%">0</div><div class="l">of SME jobs get an application within 24h</div></div>
+    <div class="stat reveal"><div class="n" data-stat="stats.shortlistWithin24hPct" data-dec="1" data-suffix="%">0</div><div class="l">of shortlists happen within 24h of applying</div></div>
   </div>
 </section>
 
-<section id="salaries">
-  <div class="kicker">05 · SME Salary Guide</div>
-  <h2>What Southeast Asia&rsquo;s small businesses actually pay.</h2>
-  <p class="lede">Median advertised base salary ranges for the highest-volume SME roles, Indonesia, H1 2026.
-     A benchmark for the segment that salary surveys have always skipped.</p>
-  <table class="reveal">
-    <thead><tr><th>Role</th><th class="r">Median range, IDR / month</th><th class="r">≈ USD / month</th></tr></thead>
-    <tbody>
-      <tr><td>Sales Representative</td><td class="r">3,000,000 – 5,000,000</td><td class="r">$185 – $310</td></tr>
-      <tr><td>Accountant</td><td class="r">3,500,000 – 5,000,000</td><td class="r">$215 – $310</td></tr>
-      <tr><td>Marketing Professional</td><td class="r">3,000,000 – 4,000,000</td><td class="r">$185 – $245</td></tr>
-      <tr><td>Live-Commerce Host</td><td class="r">3,000,000 – 4,000,000</td><td class="r">$185 – $245</td></tr>
-      <tr><td>Social Media Manager</td><td class="r">3,000,000 – 4,000,000</td><td class="r">$185 – $245</td></tr>
-      <tr><td>Administrative Staff</td><td class="r">2,500,000 – 3,500,000</td><td class="r">$155 – $215</td></tr>
-      <tr><td>Content Creator</td><td class="r">2,500,000 – 3,500,000</td><td class="r">$155 – $215</td></tr>
-      <tr><td>Logistics Driver</td><td class="r">2,500,000 – 3,500,000</td><td class="r">$155 – $215</td></tr>
-      <tr><td>Kitchen Staff</td><td class="r">2,000,000 – 2,600,000</td><td class="r">$125 – $160</td></tr>
-      <tr><td>Store Crew</td><td class="r">1,600,000 – 2,200,000</td><td class="r">$100 – $135</td></tr>
-    </tbody>
-  </table>
-  <p class="lede" style="font-size:13px;margin-top:14px;color:var(--grey)">Median of advertised base-salary bands on SME job postings, H1 2026. USD conversion at ~16,200 IDR/USD, indicative only.</p>
-</section>
-
 <section id="methodology">
-  <div class="kicker">06 · Methodology &amp; What We Left Out</div>
+  <div class="kicker">05 · Methodology &amp; What We Left Out</div>
   <h2>Built to be checked.</h2>
   <p class="lede">An index from one platform&rsquo;s data is only as good as its definitions — so here they are,
      along with what we deliberately excluded.</p>
@@ -289,7 +328,7 @@
     </div>
     <div class="methcard reveal">
       <h3>Coverage</h3>
-      <p>Six markets: Indonesia, Vietnam, Singapore, Malaysia, the Philippines and Taiwan, Jan 2024 – Jun 2026.
+      <p>Six markets: Indonesia, Vietnam, Singapore, Malaysia, the Philippines and Taiwan, <span data-bind="vintage.coverage">Jan 2024 – Jun 2026</span>.
          Indonesia — home to roughly two-thirds of ASEAN&rsquo;s MSMEs — contributes the large majority of index volume;
          country mix is published alongside the data so no aggregate hides it.</p>
     </div>
@@ -313,71 +352,66 @@
 <div class="letter" id="letter">
   <div class="letter-inner">
     <div class="kicker">A Letter from Glints</div>
-    <h2 style="margin-bottom:34px">The Other Southeast Asia</h2>
+    <h2 style="margin-bottom:34px">Why we started counting</h2>
 
-    <p class="drop">There are two Southeast Asias right now. The first one lives on LinkedIn and in the tech press:
-    funding charts pointing down, layoff trackers filling up, every second post about AI coming for white-collar jobs.
-    Spend a day there and the rational conclusion is that the region&rsquo;s best years are behind it.</p>
+    <p class="drop">Read LinkedIn or the tech press right now and Southeast Asia looks like it is shrinking.
+    Funding charts point down. Layoff trackers keep filling up. Every second post is about AI coming for
+    white-collar jobs. Spend a day there and you would decide the region&rsquo;s best years are behind it.</p>
 
-    <p>We&rsquo;ve been building in the second one since 2013. It looks nothing like the first.</p>
+    <p>We have been building in a different part of the region since 2013. It looks nothing like that.</p>
 
-    <!-- ANECDOTE: pending consented verification via CS/sales — replace with confirmed example before publication -->
-    <p>Last month we met a woman who runs three coffee shops in Jakarta. She needed a barista by Saturday, because outlet
-    number three was opening whether she was staffed or not. Her hiring stack was Instagram stories, a WhatsApp group,
-    and hope. The funding winter never reached her, because no funding ever did. She hired because a third outlet opened.</p>
+    <!-- ANECDOTE: pending consented verification via CS/sales. Replace with confirmed example before publication -->
+    <p>Last month we met a woman who runs 3 coffee shops in Jakarta. She needed a barista by Saturday. Her third
+    outlet was opening that day, staffed or not. She was hiring with Instagram stories, a WhatsApp group and hope.
+    The drop in venture funding never reached her. Venture money never had. She hired because she opened a third shop.</p>
 
-    <p>And she is the market. The overwhelming majority of Southeast Asia&rsquo;s enterprises are small businesses, and
-    they employ most of its workforce. Almost none of the hiring infrastructure built in the last twenty years was
-    built for them.</p>
+    <p>She is the market. The vast majority of Southeast Asia&rsquo;s enterprises are small businesses, and they
+    employ most of its workforce. Almost none of the hiring tools built in the last 20 years were built for them.</p>
 
     <h4>What the data says</h4>
 
-    <p>This half we started counting properly. Three things in the first edition of this index surprised even us.</p>
+    <p>This is the first edition of the index. We started counting properly this year, and 3 things surprised us.</p>
 
-    <p>First, the decoupling. SME job postings have more than tripled since January 2024 — through the exact window in
-    which the region&rsquo;s venture deal count fell to its lowest level in nearly a decade. Capital markets and the
-    real economy have simply parted ways.</p>
+    <p>First, SME job postings have more than tripled since January 2024. That happened in the same months that
+    venture deal count in the region fell to its lowest level in nearly 10 years. Funding fell. Hiring rose.</p>
 
-    <p>Second, half of the small employers hiring today have never hired on a platform before. Tens of thousands of
-    businesses each half-year are entering the formal hiring market for the first time — and the fastest-growing
-    employer class is the smallest, companies of fewer than ten people.</p>
+    <p>Second, about 1 in 2 small employers hiring today had never hired on a platform before. Tens of thousands of
+    businesses each half-year post a job for the first time. The fastest-growing group of employers is also the
+    smallest: companies with fewer than 10 people.</p>
 
-    <p>Third, what they&rsquo;re hiring surprised us most. The fastest-rising roles are the real economy&rsquo;s:
-    drivers, bakers, production workers, field sales. And next to them, a creator class that barely existed three years
-    ago — live-commerce hosts, content creators, social media operators — growing fifty percent a year and paying wages
-    that compete with accounting.</p>
+    <p>Third, the roles. This surprised us most. The fastest-rising jobs are drivers, bakers, production workers and
+    field sales. Next to them are jobs that barely existed 3 years ago, like live-commerce hosts, content creators and
+    social media operators. Those jobs are growing 50% a year. The wages now compete with accounting.</p>
 
-    <h4>Why the platforms couldn&rsquo;t see this</h4>
+    <h4>Why job platforms missed this</h4>
 
-    <p>Job platforms grew up serving enterprises, because that&rsquo;s where the budgets were. Annual contracts, ad
-    packages priced in the thousands, employer branding suites. All rational, for a bank hiring five hundred people a year.</p>
+    <p>Job platforms grew up serving big companies, because that is where the budgets were. Annual contracts. Ad
+    packages priced in the thousands. Employer branding suites. All of that makes sense for a bank hiring 500 people a year.</p>
 
-    <p>A three-outlet coffee chain needs five qualified candidates in a chat thread by tomorrow, at a price near a
-    single day of one store&rsquo;s revenue. Ask her to post an ad and wait two weeks and you&rsquo;ve already lost her.
-    Serving this segment takes different physics — pricing sized to a single hire, chat-first workflows, matching that
-    does the shortlisting an owner has no time to do. We spent a decade learning those physics, mostly the hard way,
-    and we got a good number of the decisions wrong the first time. That decade is why this data exists at all.</p>
+    <p>A coffee chain with 3 outlets needs 5 good candidates in a chat thread by tomorrow. The price has to be close
+    to 1 day of revenue from 1 store. Ask the owner to post an ad and wait 2 weeks, and you have already lost her.
+    Serving her means pricing for a single hire, working inside chat, and matching that does the shortlisting she
+    has no time to do. We spent 10 years learning how to do that, mostly the hard way. We got a lot of it wrong the
+    first time. Those 10 years are why this data exists at all.</p>
 
-    <h4>The AI part everyone has backwards</h4>
+    <h4>What AI is doing to small businesses</h4>
 
-    <p>The prevailing story is that AI destroys jobs, and inside large companies some of that is clearly happening.
-    At the small end we&rsquo;re watching a different mechanic. AI collapses the minimum viable size of a company. The
-    five-person business that would once have died survives, grows, and hires person six, seven and eight — often for
-    roles nobody had a name for two years ago. It also collapses the cost of serving that business: screening,
-    shortlisting and salary benchmarking that once needed an expensive human now happen in seconds inside a chat thread.
-    The prize for whoever serves this segment well is bringing millions of businesses into the formal hiring market
-    for the first time.</p>
+    <p>The common view is that AI destroys jobs. Inside large companies, some of that is clearly happening. At the
+    small end we see something else. AI makes it possible to run a much smaller company. A 5-person business that
+    would once have closed now survives, grows, and hires a 6th, 7th and 8th person. Often for roles nobody had a
+    name for 2 years ago. AI also cuts the cost of serving that business. Screening, shortlisting and working out
+    what a role should pay used to need an expensive person. Now they happen in seconds inside a chat thread.
+    Whoever serves these businesses well gets to bring millions of them into formal hiring for the first time.</p>
 
     <h4>Where we could be wrong</h4>
 
-    <p>The funding winter is real. AI disruption of white-collar work is real, and we think it gets worse before it gets
-    better inside large organisations. An index built from one platform&rsquo;s data has limits too, which is why
-    we&rsquo;ve published the methodology and what we deliberately left out. We&rsquo;re optimistic about a segment we
-    can measure; whether everything else recovers is a different question, and probably not ours to answer. And whether
-    this acceleration is structural or a lag is exactly what the next editions of this index exist to find out.</p>
+    <p>The drop in venture funding is real. AI disruption of white-collar work is real too. We think it gets worse
+    inside large organisations before it gets better. An index built on 1 platform&rsquo;s data has limits, which is
+    why we published the methodology and what we left out. We are optimistic about a part of the economy we can
+    measure. Whether everything else recovers is a different question, and probably not ours to answer. Whether this
+    growth is structural or a lag is what the next editions of this index are for.</p>
 
-    <p>But if you only price Southeast Asia off its venture funding charts, you&rsquo;re pricing the wrong asset.
-    The builders never got the memo that they were supposed to stop.</p>
+    <p>The SEA economy is more than just the venture funding charts and there continues to be growth in different areas. Builders continue to build.</p>
 
     <p>The barista, by the way, started on Monday.</p>
   </div>
@@ -398,30 +432,52 @@
     </div>
     <div>
       <h4>The Index</h4>
-      <p>Published half-yearly. Next edition: H2 2026.</p>
+      <p data-bind="vintage.cadence">Published annually. Next edition: 2027.</p>
       <p style="margin-top:8px"><a href="#methodology">Methodology &amp; definitions</a></p>
     </div>
   </div>
-  <div class="fineprint">© 2026 Glints Pte Ltd. Glints SEA SME Hiring Index, First Edition. Data: Glints platform,
-     Jan 2024 – Jun 2026. External citations: DealStreetAsia SE Asia Deal Review Q1 2026.</div>
+  <div class="fineprint">© 2026 Glints Pte Ltd. Glints SEA SME Hiring Index, 2026 Edition. Data: Glints platform,
+     <span data-bind="vintage.coverage">Jan 2024 – Jun 2026</span>. External citations: DealStreetAsia SE Asia Deal Review Q1 2026.</div>
 </footer>
 
 <script>
-const MONTHS = ["Jan 24","Feb 24","Mar 24","Apr 24","May 24","Jun 24","Jul 24","Aug 24","Sep 24","Oct 24","Nov 24","Dec 24",
-                "Jan 25","Feb 25","Mar 25","Apr 25","May 25","Jun 25","Jul 25","Aug 25","Sep 25","Oct 25","Nov 25","Dec 25",
-                "Jan 26","Feb 26","Mar 26","Apr 26","May 26","Jun 26"];
-const INDEX = [100.0,85.3,95.7,90.1,111.2,111.9,124.6,131.1,130.9,150.0,134.3,131.3,
-               151.3,162.2,158.6,166.1,186.2,187.6,216.3,209.7,228.3,250.1,240.6,238.2,
-               259.8,245.4,243.7,319.2,302.7,339.5];
+/* Values computed from DATA. No new numbers here. */
+const derived = (() => {
+  const v = DATA.index.values, f = DATA.firstTimeIndexed;
+  const cc = DATA.topRoles.findIndex(r => r.role === "Content Creator");
+  return {
+    indexLatest: v[v.length - 1],                                  // July: 339.5
+    indexLatestIsMax: v[v.length - 1] === Math.max(...v),          // July: true
+    firstTimeGrowthPct: Math.round(f[f.length - 1] / f[0] * 100 - 100), // July: 32
+    contentCreatorRank: cc + 1                                     // July: 8
+  };
+})();
+const SRC = { vintage: DATA.vintage, stats: DATA.stats, derived };
+const pick = path => path.split(".").reduce((o, k) => o == null ? o : o[k], SRC);
 
+document.querySelectorAll("[data-bind]").forEach(el => {
+  const val = pick(el.dataset.bind);
+  if (val != null) el.textContent = String(val);
+});
+document.querySelectorAll("[data-stat]").forEach(el => {
+  const val = pick(el.dataset.stat);
+  if (val != null) el.dataset.count = val;
+});
+document.getElementById("topRoles").innerHTML = DATA.topRoles.map(r =>
+  `<li>${r.role.replace(/&/g, "&amp;")} <span class="mult">×${r.mult.toFixed(1)}</span></li>`).join("");
+
+const niceMax = (arr, step, pad) => Math.ceil(Math.max(...arr) / step) * step + (pad || 0);
+const highlightLast = (n, base, hi) => Array.from({ length: n }, (_, i) => i === n - 1 ? hi : base);
+
+if (window.Chart) {
 Chart.defaults.color = "#8A94A6";
 Chart.defaults.borderColor = "rgba(255,255,255,.06)";
 Chart.defaults.font.family = "Inter";
 
 new Chart(document.getElementById("indexChart"), {
   type: "line",
-  data: { labels: MONTHS, datasets: [{
-    data: INDEX, borderColor: "#FFD96A", borderWidth: 3, pointRadius: 0, pointHitRadius: 12,
+  data: { labels: DATA.index.months, datasets: [{
+    data: DATA.index.values, borderColor: "#FFD96A", borderWidth: 3, pointRadius: 0, pointHitRadius: 12,
     fill: true, tension: .35,
     backgroundColor: (ctx) => {
       const g = ctx.chart.ctx.createLinearGradient(0,0,0,300);
@@ -430,37 +486,38 @@ new Chart(document.getElementById("indexChart"), {
     }
   }]},
   options: { plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>"Index "+c.parsed.y.toFixed(1)}}},
-    scales:{ x:{ticks:{maxTicksLimit:10}}, y:{beginAtZero:true, suggestedMax:360} } }
+    scales:{ x:{ticks:{maxTicksLimit:10}}, y:{beginAtZero:true, suggestedMax:niceMax(DATA.index.values,20,20)} } }
 });
 
 new Chart(document.getElementById("microChart"), {
   type: "bar",
-  data: { labels:["2024-H1","2024-H2","2025-H1","2025-H2","2026-H1"],
-    datasets:[{ data:[20.6,23.7,25.7,27.8,31.1], backgroundColor:["#33415E","#33415E","#33415E","#33415E","#FFD96A"], borderRadius:6 }]},
+  data: { labels: DATA.halfYears,
+    datasets:[{ data: DATA.microShare, backgroundColor: highlightLast(DATA.microShare.length,"#33415E","#FFD96A"), borderRadius:6 }]},
   options:{ plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.parsed.y+"% of hiring SMEs"}}},
-    scales:{ y:{beginAtZero:true, suggestedMax:35, ticks:{callback:v=>v+"%"}} } }
+    scales:{ y:{beginAtZero:true, suggestedMax:niceMax(DATA.microShare,5), ticks:{callback:v=>v+"%"}} } }
 });
 
 new Chart(document.getElementById("firstChart"), {
   type: "bar",
-  data: { labels:["2024-H1","2024-H2","2025-H1","2025-H2","2026-H1"],
-    datasets:[{ data:[100,103,105,113,132], backgroundColor:["#33415E","#33415E","#33415E","#33415E","#EC272B"], borderRadius:6 }]},
+  data: { labels: DATA.halfYears,
+    datasets:[{ data: DATA.firstTimeIndexed, backgroundColor: highlightLast(DATA.firstTimeIndexed.length,"#33415E","#EC272B"), borderRadius:6 }]},
   options:{ plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>"Indexed volume "+c.parsed.y}}},
-    scales:{ y:{beginAtZero:true, suggestedMax:140} } }
+    scales:{ y:{beginAtZero:true, suggestedMax:niceMax(DATA.firstTimeIndexed,20)} } }
 });
 
 new Chart(document.getElementById("risersChart"), {
   type: "bar",
-  data: { labels:["Logistics Driver","Personal Driver","Nutritionist","English Teacher","Production Worker","Sales Promoter","Field Collector","Baker","Motorcycle Courier"],
-    datasets:[{ data:[40.1,30.9,10.7,4.9,4.8,4.3,4.3,4.1,3.7], backgroundColor:"#FFD96A", borderRadius:5 }]},
+  data: { labels: DATA.risers.map(r => r.role),
+    datasets:[{ data: DATA.risers.map(r => r.mult), backgroundColor:"#FFD96A", borderRadius:5 }]},
   options:{ indexAxis:"y",
-    plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>"×"+c.parsed.x+" vs H1 2025"}}},
+    plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>"×"+c.parsed.x+" vs "+DATA.vintage.priorPeriod}}},
     scales:{ x:{beginAtZero:true, ticks:{callback:v=>"×"+v}} } }
 });
+}
 
 /* counters */
 const STATIC = location.hash === "#static";
-if (STATIC) { Chart.defaults.animation = false; } else { document.body.classList.add("anim"); }
+if (STATIC) { if (window.Chart) Chart.defaults.animation = false; } else { document.body.classList.add("anim"); }
 const ease = t => 1 - Math.pow(1 - t, 3);
 function runCounter(el){
   const target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.dec||"0"),
