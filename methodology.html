@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology &amp; Definitions · Glints SEA SME Hiring Index, 2026 Edition</title>
+<style>
+  :root{
+    --red:#EC272B;        /* glints-aries primary */
+    --navy:#132647;       /* glints-aries secondary */
+    --navy-deep:#0B1830;
+    --yellow:#FFD96A;     /* glints-aries yellow */
+    --blue:#059FFF;
+    --ink:#132647;
+    --paper:#FFFFFF;
+    --grey:#8A94A6;
+    --line:rgba(255,255,255,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',-apple-system,sans-serif;background:var(--navy-deep);color:#EAF0F9;line-height:1.6}
+
+  /* ---------- nav ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:28px;
+      padding:14px 32px;background:rgba(11,24,48,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .wordmark{display:flex;align-items:center;text-decoration:none}
+  .wordmark img{height:42px;width:auto;display:block}
+  .navtitle{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);font-weight:600}
+  nav .links{margin-left:auto;display:flex;gap:20px}
+  nav .links a{color:#B9C4D6;text-decoration:none;font-size:13px;font-weight:500}
+  nav .links a:hover{color:var(--yellow)}
+  @media(max-width:900px){nav .links{display:none}}
+
+  /* ---------- hero ---------- */
+  header{min-height:min(92vh,880px);display:flex;flex-direction:column;justify-content:center;
+         padding:140px 8vw 80px;position:relative;overflow:hidden;
+         background:radial-gradient(1200px 600px at 80% -10%,rgba(236,39,43,.18),transparent 60%),
+                    radial-gradient(900px 500px at 10% 110%,rgba(255,217,106,.08),transparent 60%),var(--navy-deep)}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+           color:var(--navy-deep);background:var(--yellow);padding:6px 12px;border-radius:4px;margin-bottom:28px}
+  h1{font-size:clamp(38px,6vw,76px);font-weight:900;letter-spacing:-.02em;line-height:1.05;max-width:16ch}
+  h1 em{font-style:normal;color:var(--yellow)}
+  .hero-sub{margin-top:26px;font-size:clamp(16px,1.6vw,20px);color:#B9C4D6;max-width:62ch}
+  .hero-sub strong{color:#fff}
+  .statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);
+            border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:56px}
+  .stat{background:rgba(255,255,255,.03);padding:26px 24px}
+  .stat .n{font-size:clamp(30px,3.4vw,46px);font-weight:800;color:var(--yellow);letter-spacing:-.02em}
+  .stat .n.red{color:#FF6B6E}
+  .stat .l{margin-top:6px;font-size:13px;color:var(--grey)}
+
+  /* ---------- sections ---------- */
+  section{padding:96px 8vw;border-top:1px solid var(--line)}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+  h2{font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.15;max-width:24ch}
+  .lede{margin-top:18px;font-size:17px;color:#B9C4D6;max-width:68ch}
+  .lede strong{color:#fff}
+  .split{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;margin-top:48px;align-items:start}
+  @media(max-width:900px){.split{grid-template-columns:1fr}}
+  .chartbox{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:28px}
+  .chartbox h3{font-size:14px;font-weight:600;color:#DCE4F0;margin-bottom:4px}
+  .chartbox .src{font-size:11px;color:var(--grey);margin-top:14px}
+  .quotecard{background:linear-gradient(160deg,rgba(236,39,43,.14),rgba(236,39,43,.05));
+             border:1px solid rgba(236,39,43,.35);border-radius:12px;padding:32px}
+  .quotecard .big{font-size:clamp(22px,2.4vw,30px);font-weight:800;line-height:1.25}
+  .quotecard .big em{font-style:normal;color:#FF8A8C}
+  .quotecard .src{font-size:12px;color:var(--grey);margin-top:16px}
+  .callout{background:rgba(255,217,106,.07);border:1px solid rgba(255,217,106,.3);border-radius:12px;
+           padding:24px 28px;margin-top:32px;font-size:15px;color:#E8DFC4;max-width:75ch}
+  .callout strong{color:var(--yellow)}
+
+  /* roles */
+  .rolegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;margin-top:48px}
+  ol.toproles{list-style:none;counter-reset:r}
+  ol.toproles li{counter-increment:r;display:flex;align-items:baseline;gap:14px;padding:11px 0;
+                 border-bottom:1px solid var(--line);font-size:15px}
+  ol.toproles li::before{content:counter(r,decimal-leading-zero);font-weight:800;color:var(--grey);font-size:13px;min-width:26px}
+  ol.toproles .mult{margin-left:auto;font-weight:700;color:var(--yellow);font-size:13px;white-space:nowrap}
+
+  /* methodology */
+  .meth{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:44px}
+  .methcard{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:26px}
+  .methcard h3{font-size:14px;font-weight:700;color:var(--yellow);margin-bottom:10px}
+  .methcard p,.methcard li{font-size:14px;color:#B9C4D6}
+  .methcard ul{padding-left:18px;margin-top:6px}
+
+  /* founder letter */
+  .letter{background:#F7F5F0;color:var(--ink);padding:110px 8vw}
+  .letter-inner{max-width:680px;margin:0 auto;font-family:'Source Serif 4',Georgia,serif;font-size:18px;line-height:1.75}
+  .letter-inner .kicker{color:var(--red)}
+  .letter-inner h2{color:var(--navy);font-family:'Inter',sans-serif;max-width:none}
+  .letter-inner p{margin:22px 0}
+  .letter-inner .drop::first-letter{font-size:52px;font-weight:700;float:left;line-height:.95;padding-right:10px;color:var(--red)}
+  .letter-inner h4{font-family:'Inter',sans-serif;font-size:15px;letter-spacing:.02em;color:var(--navy);
+                   margin:36px 0 -6px;font-weight:800}
+  .sig-block{margin-top:52px}
+  .sig-block img{width:230px;display:block;margin-bottom:4px}
+  .sig-block .name{font-family:'Inter',sans-serif;font-weight:800;font-size:16px;color:var(--navy)}
+  .sig-block .title{font-family:'Inter',sans-serif;font-size:13.5px;color:#6B7280}
+
+  /* footer */
+  footer{padding:80px 8vw;border-top:1px solid var(--line)}
+  footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+  @media(max-width:800px){footer .cols{grid-template-columns:1fr}}
+  footer h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-bottom:12px}
+  footer p,footer a{font-size:14px;color:#B9C4D6;text-decoration:none}
+  footer a:hover{color:var(--yellow)}
+  .fineprint{margin-top:56px;font-size:12px;color:#5A6475}
+
+  .reveal{opacity:1;transform:none;transition:none} body.anim .reveal{opacity:0;transform:translateY(24px);transition:all .7s cubic-bezier(.16,1,.3,1)}
+  body.anim .reveal.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<nav>
+  <span class="navtitle"><a href="index.html" style="color:inherit;text-decoration:none">SEA SME Hiring Index · 2026 Edition</a></span>
+  <div class="links">
+    <a href="index.html">&larr; Back to the Index</a>
+  </div>
+</nav>
+<section id="methodology">
+  <div class="kicker">05 · Methodology &amp; What We Left Out</div>
+  <h2>Built to be checked.</h2>
+  <p class="lede">An index from one platform&rsquo;s data is only as good as its definitions — so here they are,
+     along with what we deliberately excluded.</p>
+  <div class="meth">
+    <div class="methcard reveal">
+      <h3>Definitions</h3>
+      <ul>
+        <li><strong>SME</strong> — employers with ≤200 staff (self-reported at registration)</li>
+        <li><strong>Micro-employer</strong> — fewer than 10 staff</li>
+        <li><strong>Hiring activity</strong> — job postings created in period, spam/removed postings excluded</li>
+        <li><strong>First-time employer</strong> — first-ever posting by that business on the platform</li>
+        <li><strong>Index</strong> — monthly postings, January 2024 = 100</li>
+      </ul>
+    </div>
+    <div class="methcard reveal">
+      <h3>Coverage</h3>
+      <p>Six markets: Indonesia, Vietnam, Singapore, Malaysia, the Philippines and Taiwan, Jan 2024 – Sep 2026.
+         Indonesia — home to roughly two-thirds of ASEAN&rsquo;s MSMEs — contributes the large majority of index volume;
+         country mix is published alongside the data so no aggregate hides it.</p>
+    </div>
+    <div class="methcard reveal">
+      <h3>What we deliberately left out</h3>
+      <ul>
+        <li>Anything about Glints&rsquo; own commercial performance — this is a report about the segment, not about us</li>
+        <li>Shortlisting-speed data before 2025 (instrumentation for that signal launched Jan 2025)</li>
+        <li>Role categories whose growth reflects taxonomy relabelling rather than real hiring</li>
+      </ul>
+    </div>
+    <div class="methcard reveal">
+      <h3>Honest limits</h3>
+      <p>One platform&rsquo;s lens, however wide, is still one lens. Company size is self-reported. And whether the
+         current acceleration is structural or a post-downturn catch-up is a question the next editions of this
+         index exist to answer.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fineprint">&copy; 2026 Glints Pte Ltd. Glints SEA SME Hiring Index, 2026 Edition. Data: Glints platform, Jan 2024 &ndash; Sep 2026.
+     Media: <a href="mailto:media@glints.com">media@glints.com</a></div>
+</footer>
+<script>document.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible'));</script>
+</body>
+</html>

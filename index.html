@@ -27,7 +27,6 @@ const DATA = {
     // Comparison window for growth multiples. July pull = Jan-Jun 2025.
     priorPeriod: "the same months of 2025",
     // Footer cadence line. July build text, unchanged.
-    cadence: "Published annually. Next edition: 2027."
   },
 
   // SME Hiring Activity Index: monthly SME job postings, six markets, Jan 2024 = 100.
@@ -208,7 +207,7 @@ const DATA = {
     <a href="#employers">New Employers</a>
     <a href="#roles">Roles</a>
     <a href="#speed">Speed</a>
-    <a href="#methodology">Methodology</a>
+    <a href="methodology.html">Methodology</a>
     <a href="#letter">Letter from Glints</a>
   </div>
 </nav>
@@ -230,7 +229,7 @@ const DATA = {
 
 <section id="decoupling">
   <div class="kicker">01 · The Decoupling</div>
-  <h2>Capital markets and the real economy have parted ways.</h2>
+  <h2>Venture funding and SME hiring are moving in different directions.</h2>
   <p class="lede">Through the exact window in which Southeast Asia&rsquo;s venture deal count sank to its lowest level
      in nearly a decade, SME hiring activity on Glints <strong>more than quadrupled</strong>. Small employers do not hire
      because sentiment improved. They hire because orders came in.</p>
@@ -238,7 +237,7 @@ const DATA = {
     <div class="chartbox reveal">
       <h3>SME Hiring Activity Index — monthly job postings, six markets (Jan 2024 = 100)</h3>
       <canvas id="indexChart" height="120"></canvas>
-      <div class="src">Source: Glints platform data, <span data-bind="vintage.coverage">Jan 2024 – Jun 2026</span>. Methodology below.</div>
+      <div class="src">Source: Glints platform data, <span data-bind="vintage.coverage">Jan 2024 – Jun 2026</span>. <a href="methodology.html">Methodology</a>.</div>
     </div>
     <div class="quotecard reveal">
       <div class="big">Q1 2026 recorded the <em>lowest quarterly venture deal count</em> in Southeast Asia in at least eight years.</div>
@@ -310,44 +309,6 @@ const DATA = {
   </div>
 </section>
 
-<section id="methodology">
-  <div class="kicker">05 · Methodology &amp; What We Left Out</div>
-  <h2>Built to be checked.</h2>
-  <p class="lede">An index from one platform&rsquo;s data is only as good as its definitions — so here they are,
-     along with what we deliberately excluded.</p>
-  <div class="meth">
-    <div class="methcard reveal">
-      <h3>Definitions</h3>
-      <ul>
-        <li><strong>SME</strong> — employers with ≤200 staff (self-reported at registration)</li>
-        <li><strong>Micro-employer</strong> — fewer than 10 staff</li>
-        <li><strong>Hiring activity</strong> — job postings created in period, spam/removed postings excluded</li>
-        <li><strong>First-time employer</strong> — first-ever posting by that business on the platform</li>
-        <li><strong>Index</strong> — monthly postings, January 2024 = 100</li>
-      </ul>
-    </div>
-    <div class="methcard reveal">
-      <h3>Coverage</h3>
-      <p>Six markets: Indonesia, Vietnam, Singapore, Malaysia, the Philippines and Taiwan, <span data-bind="vintage.coverage">Jan 2024 – Jun 2026</span>.
-         Indonesia — home to roughly two-thirds of ASEAN&rsquo;s MSMEs — contributes the large majority of index volume;
-         country mix is published alongside the data so no aggregate hides it.</p>
-    </div>
-    <div class="methcard reveal">
-      <h3>What we deliberately left out</h3>
-      <ul>
-        <li>Anything about Glints&rsquo; own commercial performance — this is a report about the segment, not about us</li>
-        <li>Shortlisting-speed data before 2025 (instrumentation for that signal launched Jan 2025)</li>
-        <li>Role categories whose growth reflects taxonomy relabelling rather than real hiring</li>
-      </ul>
-    </div>
-    <div class="methcard reveal">
-      <h3>Honest limits</h3>
-      <p>One platform&rsquo;s lens, however wide, is still one lens. Company size is self-reported. And whether the
-         current acceleration is structural or a post-downturn catch-up is a question the next editions of this
-         index exist to answer.</p>
-    </div>
-  </div>
-</section>
 
 <div class="letter" id="letter">
   <div class="letter-inner">
@@ -427,13 +388,12 @@ const DATA = {
     </div>
     <div>
       <h4>Press</h4>
-      <p><a href="mailto:press@glints.com">press@glints.com</a></p>
+      <p><a href="mailto:media@glints.com">media@glints.com</a></p>
       <p style="margin-top:8px"><a href="https://glints.com/sg/about">glints.com/sg/about</a></p>
     </div>
     <div>
       <h4>The Index</h4>
-      <p data-bind="vintage.cadence">Published annually. Next edition: 2027.</p>
-      <p style="margin-top:8px"><a href="#methodology">Methodology &amp; definitions</a></p>
+      <p style="margin-top:8px"><a href="methodology.html">Methodology &amp; definitions</a></p>
     </div>
   </div>
   <div class="fineprint">© 2026 Glints Pte Ltd. Glints SEA SME Hiring Index, 2026 Edition. Data: Glints platform,
