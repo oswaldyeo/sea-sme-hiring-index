@@ -217,7 +217,7 @@ const DATA = {
   <h1>The hiring charts tell <em>a different story</em> from the funding charts.</h1>
   <p class="hero-sub">Venture funding headlines say Southeast Asia is in retreat. The small businesses that employ
      most of the region never noticed. Drawn from hiring activity by small and medium employers across six markets
-     on Glints — <strong>the platform where Southeast Asia&rsquo;s SMEs hire</strong> — this is the region&rsquo;s
+     on Glints, <strong>the platform where Southeast Asia&rsquo;s SMEs hire</strong>, this is the region&rsquo;s
      first dedicated index of SME hiring.</p>
   <div class="statgrid">
     <div class="stat"><div class="n" data-stat="derived.indexLatest" data-dec="1">0</div><div class="l">SME Hiring Index, <span data-bind="vintage.lastMonthShort">Jun 2026</span> (Jan 2024 = 100)</div></div>
@@ -235,14 +235,14 @@ const DATA = {
      because sentiment improved. They hire because orders came in.</p>
   <div class="split">
     <div class="chartbox reveal">
-      <h3>SME Hiring Activity Index — monthly job postings, six markets (Jan 2024 = 100)</h3>
+      <h3>SME Hiring Activity Index: monthly job postings, six markets (Jan 2024 = 100)</h3>
       <canvas id="indexChart" height="120"></canvas>
       <div class="src">Source: Glints platform data, <span data-bind="vintage.coverage">Jan 2024 – Jun 2026</span>. <a href="methodology.html">Methodology</a>.</div>
     </div>
     <div class="quotecard reveal">
       <div class="big">Q1 2026 recorded the <em>lowest quarterly venture deal count</em> in Southeast Asia in at least eight years.</div>
-      <div class="src">DealStreetAsia, SE Asia Deal Review Q1 2026. Headline funding value was dominated by a small number of data-centre megadeals; underlying deal flow remained below pre-2022 levels.</div>
-      <div class="big" style="margin-top:28px">Meanwhile SME job postings reached an <em>all-time high</em> — index <span data-bind="derived.indexLatest">407.2</span> in <span data-bind="vintage.lastMonthLong">September 2026</span>.</div>
+      <div class="src">Tracxn, SEA Tech Q1 2026 Funding Report. Headline funding value was dominated by a single $2 billion data-centre megadeal; underlying deal flow remained below pre-2022 levels.</div>
+      <div class="big" style="margin-top:28px">Meanwhile SME job postings reached an <em>all-time high</em>: index <span data-bind="derived.indexLatest">407.2</span> in <span data-bind="vintage.lastMonthLong">September 2026</span>.</div>
     </div>
   </div>
 </section>
@@ -250,7 +250,7 @@ const DATA = {
 <section id="employers">
   <div class="kicker">02 · The New Employer Class</div>
   <h2>Half of the SMEs hiring today have never hired on a platform before.</h2>
-  <p class="lede">In <span data-bind="vintage.period">Jan–Sep 2026</span>, <strong><span data-bind="stats.firstTimerSharePct">59</span>% of small employers posting on Glints were doing so for the first time ever</strong> —
+  <p class="lede">In <span data-bind="vintage.period">Jan–Sep 2026</span>, <strong><span data-bind="stats.firstTimerSharePct">59</span>% of small employers posting on Glints were doing so for the first time ever</strong>:
      businesses entering the formal hiring market, many making their first hire, full stop. And the fastest-growing
      employer class is the smallest: companies with fewer than ten people are now
      <strong>nearly one in three</strong> hiring SMEs, up from one in five two years ago.</p>
@@ -267,31 +267,31 @@ const DATA = {
     </div>
   </div>
   <div class="callout reveal"><strong>Why it matters:</strong> this is net-new demand, not share shifting between platforms.
-     A meaningful part of Southeast Asia&rsquo;s hiring is coming online for the first time — and it looks nothing like
+     A meaningful part of Southeast Asia&rsquo;s hiring is coming online for the first time, and it looks nothing like
      enterprise recruitment.</div>
 </section>
 
 <section id="roles">
   <div class="kicker">03 · What SMEs Hire Now</div>
-  <h2>The boom is the real economy — plus a creator class that barely existed three years ago.</h2>
+  <h2>A creator class economy that barely existed three years ago.</h2>
   <p class="lede">The fastest-rising SME roles are not what the AI-doom discourse predicts. They are drivers, bakers,
-     production workers, sales promoters — the jobs of physical commerce growing again. Alongside them, a
+     production workers, sales promoters: the jobs of physical commerce growing again. Alongside them, a
      <strong>creator-economy hiring cluster grew <span data-bind="stats.creatorClusterGrowthPct">53</span>% year on year</strong>: live-commerce hosts, social media managers,
      e-commerce operators. Content Creator is now a top-<span data-bind="derived.contentCreatorRank">8</span> SME role outright.</p>
   <div class="rolegrid">
     <div class="chartbox reveal">
-      <h3>Top 10 SME roles, <span data-bind="vintage.period">Jan–Sep 2026</span> — growth vs <span data-bind="vintage.priorPeriod">the same months of 2025</span></h3> 
+      <h3>Top 10 SME roles, <span data-bind="vintage.period">Jan–Sep 2026</span>: growth vs <span data-bind="vintage.priorPeriod">the same months of 2025</span></h3> 
       <ol class="toproles" id="topRoles"></ol>
       <div class="src">Ranked by posting volume in <span data-bind="vintage.period">Jan–Sep 2026</span>. Multiple = <span data-bind="vintage.period">Jan–Sep 2026</span> vs <span data-bind="vintage.priorPeriod">the same months of 2025</span> postings.</div>
     </div>
     <div class="chartbox reveal">
-      <h3>Fastest-rising SME roles — growth multiple, <span data-bind="vintage.period">Jan–Sep 2026</span> vs <span data-bind="vintage.priorPeriod">the same months of 2025</span></h3> 
+      <h3>Fastest-rising SME roles: growth multiple, <span data-bind="vintage.period">Jan–Sep 2026</span> vs <span data-bind="vintage.priorPeriod">the same months of 2025</span></h3> 
       <canvas id="risersChart" height="230"></canvas>
       <div class="src">Roles with material posting volume in <span data-bind="vintage.period">Jan–Sep 2026</span>. Taxonomy-relabel artifacts excluded.</div>
     </div>
   </div>
   <div class="callout reveal"><strong>The AI part everyone has backwards:</strong> at the small end of the economy we observe
-     AI collapsing the cost of running — and serving — a tiny company. The businesses that survive at five people
+     AI collapsing the cost of running and serving a tiny company. The businesses that survive at five people
      grow, and hire person six, seven and eight. Often for roles that had no name in 2023.</div>
 </section>
 
@@ -382,7 +382,7 @@ const DATA = {
   <div class="cols">
     <div>
       <h4>About Glints</h4>
-      <p>Founded in Singapore in 2013, Glints is the leading talent platform for Southeast Asia&rsquo;s SMEs —
+      <p>Founded in Singapore in 2013, Glints is the leading talent platform for Southeast Asia&rsquo;s SMEs,
          the category leader in SME hiring across the region, connecting millions of candidates with the small and
          medium businesses that power APAC&rsquo;s real economy.</p>
     </div>
@@ -397,7 +397,7 @@ const DATA = {
     </div>
   </div>
   <div class="fineprint">© 2026 Glints Pte Ltd. Glints SEA SME Hiring Index, 2026 Edition. Data: Glints platform,
-     <span data-bind="vintage.coverage">Jan 2024 – Jun 2026</span>. External citations: DealStreetAsia SE Asia Deal Review Q1 2026.</div>
+     <span data-bind="vintage.coverage">Jan 2024 – Jun 2026</span>. External citations: Tracxn SEA Tech Q1 2026 Funding Report.</div>
 </footer>
 
 <script>
